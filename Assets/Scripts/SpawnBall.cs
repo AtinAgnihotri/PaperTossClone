@@ -13,6 +13,7 @@ public class SpawnBall : MonoBehaviour {
     public Text yValue;
     public float fanSpeed;
     float y;
+    Rigidbody rb;
 
     void Start()
     {
@@ -35,23 +36,25 @@ public class SpawnBall : MonoBehaviour {
 
     public void SetFan()
     {
-        fanSpeed = UnityEngine.Random.Range(0f, 5f);
+        //fanSpeed = UnityEngine.Random.Range(0f, 5f);
         
         if (Math.Round(y) % 2 == 0)
         {
+            fanSpeed = UnityEngine.Random.Range(0f, 5f);
 
             /*if (windText == null)
             {
                 Debug.Log("Nul kyu hai");
             }*/
-            windText.text = "Wind : Left, " + fanSpeed.ToString("F2");
+            windText.text = "Wind : " + fanSpeed.ToString("F2") + " -->";
            // Debug.Log("Yaha Pahuch Gaye");
             fan.transform.position = new Vector3(-1.111f, 0.07f, -5.47f);
             fan.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         }
         else
         {
-            windText.text = "Wind : Right, " + fanSpeed.ToString("F2");
+            fanSpeed = UnityEngine.Random.Range(-5f, 0f);
+            windText.text = "Wind : " + (fanSpeed * -1).ToString("F2") + "<--";
             fan.transform.position = new Vector3(1.27f, 0.07f, -5.47f);
             fan.transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
         }
@@ -59,4 +62,14 @@ public class SpawnBall : MonoBehaviour {
         yValue.text = "yVal : " + Math.Round(y).ToString("F2");
         y = UnityEngine.Random.Range(0f, 10f);
     }
+    /*
+    void Update()
+    {
+        if (rb == null)
+        {
+            rb = GameObject.FindGameObjectWithTag("Ball").GetComponent<Rigidbody>();
+            if((rb!=null)&&(rb.isKinematic==false)
+        }
+        
+    }*/
 }

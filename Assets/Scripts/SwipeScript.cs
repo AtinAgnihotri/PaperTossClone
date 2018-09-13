@@ -14,7 +14,8 @@ public class SwipeScript : MonoBehaviour {
 	[SerializeField]
 	float throwForceInZ = 20f; // to control throw force in Z direction
 
-    public Text xDist;
+    //public Text xDist;
+    public Text debug;
 
     public SpawnBall spn;
 
@@ -25,18 +26,26 @@ public class SwipeScript : MonoBehaviour {
 	void Start()
 	{
 		rb = GetComponent<Rigidbody> ();
-        if(spn==null)
-            spn = gameObject.GetComponent<SpawnBall>();
-        spn.SetFan();
+        if (spn == null)
+        {
+            spn = GameObject.FindGameObjectWithTag("Bin").GetComponent<SpawnBall>();
+        }
+        if (spn == null)
+        {
+            Debug.Log("Abb Kyu Null hai");
+            spn.SetFan();
+        }
+        debug = GameObject.FindGameObjectWithTag("ScreenDebug").GetComponent<Text>();
 	}
 
 	// Update is called once per frame
 	void Update () {
 
-        /*if ((rb.isKinematic != false) && (rb != null))
+        if ((rb.isKinematic == false) && (rb != null))
         {
-            rb.AddForce(spn.fanSpeed * 10, 0f, 0f);
-        }*/
+           // rb.AddForce(spn.fanSpeed * 5 , 0f, 0f);
+            rb.AddForce(spn.fanSpeed * 2, 0f, 0f);
+        }
 
         // if you touch the screen
         if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
@@ -44,10 +53,10 @@ public class SwipeScript : MonoBehaviour {
 			// getting touch position and marking time when you touch the screen
 			touchTimeStart = Time.time;
 			startPos = Input.GetTouch (0).position;
-            if (xDist == null)
+           /* if (xDist == null)
             {
                 xDist = GameObject.FindGameObjectWithTag("xDist").GetComponent<Text>();
-            }
+            }*/
 		}
 
 		// if you release your finger
@@ -64,13 +73,14 @@ public class SwipeScript : MonoBehaviour {
 
 			// calculating swipe direction in 2D space
 			direction = startPos - endPos;
-            xDist.text = "x : " + direction.x.ToString("F2");
+           // xDist.text = "x : " + direction.x.ToString("F2");
             if (direction.y != 0f)
             {
                 // add force to balls rigidbody in 3D space depending on swipe time, direction and throw forces
                 rb.isKinematic = false;
                 //rb.AddForce (- direction.x * throwForceInXandY, - direction.y * throwForceInXandY, throwForceInZ / timeInterval);
                 rb.AddForce((-direction.x * throwForceInXandY) /*- (spn.fanSpeed * 10)*/, 260f, 410f);
+                debug.text = "First Addforce toh ho raha hai!";
             }
 			
 

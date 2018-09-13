@@ -111,7 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwForceInXandY: 1
   throwForceInZ: 20
-  xDist: {fileID: 0}
+  debug: {fileID: 0}
+  spn: {fileID: 0}
 --- !u!135 &135611086391723532
 SphereCollider:
   m_ObjectHideFlags: 1

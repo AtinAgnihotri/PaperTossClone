@@ -10,6 +10,7 @@ TagManager:
   - Fan
   - WindText
   - xDist
+  - ScreenDebug
   layers:
   - Default
   - TransparentFX
