@@ -26,6 +26,7 @@ public class SpawnBall : MonoBehaviour {
         {
             windText = GameObject.FindGameObjectWithTag("WindText").GetComponent<Text>();
         }
+        windText.text = "Wind : 0";
     }
 
 	public void Spawn()
