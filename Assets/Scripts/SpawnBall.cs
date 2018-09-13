@@ -54,7 +54,7 @@ public class SpawnBall : MonoBehaviour {
         else
         {
             fanSpeed = UnityEngine.Random.Range(-5f, 0f);
-            windText.text = "Wind : " + (fanSpeed * -1).ToString("F2") + "<--";
+            windText.text = "Wind : <-- " + (fanSpeed * -1).ToString("F2");
             fan.transform.position = new Vector3(1.27f, 0.07f, -5.47f);
             fan.transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
         }
